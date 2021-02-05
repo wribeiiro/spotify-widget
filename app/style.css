@@ -1,0 +1,31 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Press Start 2P', cursive;
+}
+
+html,
+body {
+    margin: 0;
+	padding: 0;
+	background-color: var(--black);
+}
+  
+:root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --purple: #7159C1;
+}
+
+#marquee {
+	height: 30px;
+	padding: 22px;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: row;
+	position: fixed;
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.9);
+	font-size: 16px;
+	text-transform: uppercase;
+	color: var(--white);
+}
