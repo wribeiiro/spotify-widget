@@ -12,12 +12,13 @@ function createWindow (token) {
 
 	const display = screen.getPrimaryDisplay()
 	const width = display.bounds.width
+	const heigth = display.bounds.height
 
 	mainWindow = new BrowserWindow({
 		width: 320,
 		height: 25,
-		x: width - 330,
-		y: 10,
+		x: width - 325,
+		y: heigth - 80,
 		frame: false,
 		webPreferences: {
 			preload: path.join(__dirname, './preload.js'),

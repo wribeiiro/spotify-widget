@@ -1,26 +1,19 @@
 window.$ = window.jQuery = require('jquery')
+const myConsole = require('console')
 
 const querystring = require('querystring')
 const query = querystring.parse(global.location.search) 
 const accessToken = JSON.parse(query['?access_token'])
 
-$(document).ready(function () {
-    let firstExecution = false
-
-    if (firstExecution == false) {
-        loopCurrentSong(accessToken)
-        firstExecution = true
-    }
-
-    setInterval(() => {
-        loopCurrentSong(accessToken)
-    }, 5000)
-})
+loopCurrentSong(accessToken)
 
 function loopCurrentSong(token) {
     
     const setSong = (data) => {
-        $("#marquee").html(`<span>&#x25B6; ${data.item.artists[0].name} - ${data.item.name}</span>`)
+        const song = `<span>🎧 Playing now: ${data.item.artists[0].name} - ${data.item.name}</span>`
+
+        $("#marquee").html(song)
+        myConsole.log(`${(new Date).toLocaleDateString()} ${(new Date).toLocaleTimeString()} ${song}`)
     }
 
     $.ajax({
@@ -30,12 +23,14 @@ function loopCurrentSong(token) {
             xhr.setRequestHeader("Authorization", `Bearer ${token}`)
         },
         success: (data) => {
-
             if (!data) {
                 return
             }
 
             setSong(data)
+        },
+        complete: () => {
+            setTimeout(() => loopCurrentSong(accessToken), 4000)
         }
     })
 }
