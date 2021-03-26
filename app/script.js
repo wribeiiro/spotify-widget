@@ -10,7 +10,11 @@ loopCurrentSong(accessToken)
 function loopCurrentSong(token) {
     
     const setSong = (data) => {
-        const song = `<span>🎧 Playing now: ${data.item.artists[0].name} - ${data.item.name}</span>`
+        const song = `<span> 
+            🎧 Playing now:
+            <img src="${data.item.album.images[0].url}" width="30" height="30">
+            ${data.item.artists[0].name} - ${data.item.name}
+        </span>`
 
         $("#marquee").html(song)
         myConsole.log(`${(new Date).toLocaleDateString()} ${(new Date).toLocaleTimeString()} ${song}`)
